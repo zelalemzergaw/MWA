@@ -13,16 +13,15 @@ exports.deletProduct = (req, res, next) => {
     res.redirect('/');
 }
 exports.postProductForm = (req, res, next) => {
-    console.log(req.body);
+    //console.log(req.body);
     console.log('productlist ..');
-
     const title = req.body.title;
     const brand = req.body.brand;
     const price = req.body.price;
     const image = req.body.image;
     const description = req.body.description;
-    const prod = new Product(null, title, brand, price, image, description);
-    prod.save();
+    const product = new Product(title, brand, price, image, description);
+    product.save();
     //console.log(Product.findAll());
     res.redirect('/');
 }

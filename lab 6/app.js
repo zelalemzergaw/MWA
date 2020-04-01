@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const path = require('path');
+const mongoConnect = require('./util/database').mongoConnect;
 
 const app = express();
 
@@ -30,6 +31,8 @@ app.use(function(err, req, res, next) {
     res.status(500).send('Something broke!');
 });
 
-app.listen(3000, () => {
-    console.log('Your Server is running on 3000');
+mongoConnect(() => {
+    app.listen(3000, () => {
+        console.log('Your Server is running on 3000');
+    })
 })

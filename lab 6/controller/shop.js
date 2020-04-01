@@ -3,7 +3,15 @@ const rootDir = require('../util/path');
 
 const path = require('path');
 exports.productDetail = (req, res, next) => {
-    const products = Product.findAll();
+    Product.findAll()
+        .then(products => {
+            console.log('shop.js', products);
+            res.render('shop.ejs', { prod: products });
+        })
+        .catch(err => console.log(err));
+
+    // const products = Product.findAll();
+
     //res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-    res.render('shop.ejs', { prod: products });
+
 }
